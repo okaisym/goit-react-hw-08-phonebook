@@ -6,13 +6,18 @@ export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <NavLink>
+    <div>
       <StyledNavLink to="/">Home</StyledNavLink>
-      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
-    </NavLink>
+      {isLoggedIn && <StyledNavLink to="/contacts">Contacts</StyledNavLink>}
+    </div>
   );
 };
 
 const StyledNavLink = styled(NavLink)`
 color: #002244;
-font-weight: 700;`
+font-weight: 700;
+margin-right: 30px;
+
+&.active {
+  color: #6495ed;
+}`;

@@ -3,16 +3,18 @@ import { ContactForm } from '../../components/Form/Form';
 import { selectContacts } from '../../redux/contacts/contactsSelectors';
 import { useSelector } from 'react-redux';
 import { Searchbar } from '../../components/Searchbar/Searchbar';
+import { Title, FormContainer, TextItem } from './ContactsContainer.styled';
 
 export const ContactsContainer = () => {
   const contacts = useSelector(selectContacts);
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <FormContainer>
+      <Title>Phonebook</Title>
       <ContactForm />
-      <h2>Contacts</h2>
+      <Title>Contacts</Title>
       <Searchbar />
-      {contacts.length > 0 ? <ContactList /> :  <p>No contacts found</p>}
-    </div>
+      {contacts.length > 0 ? <ContactList /> :  <TextItem>No contacts found 😥
+</TextItem>}
+    </FormContainer>
   );
 };

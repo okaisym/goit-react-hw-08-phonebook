@@ -9,4 +9,8 @@ gap: 40px;
 
 export const StyledNavLink = styled(NavLink)`
 color: #002244;
-font-weight: 700;`
+font-weight: 700;
+
+&.active {
+color: #6495ed;
+}`;

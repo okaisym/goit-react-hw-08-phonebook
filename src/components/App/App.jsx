@@ -1,17 +1,17 @@
 import { useDispatch } from 'react-redux';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { RestrictedRoute } from 'components/RestrictedRoute';
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { refreshUser } from '../../redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Layout } from 'components/Layout/Layout';
-import HomePage from '../../pages/HomePage';
-import RegisterPage from '../../pages/RegisterPage';
-import LoginPage from '../../pages/LoginPage';
-import ContactsPage from '../../pages/ContactsPage';
 
+const HomePage = lazy(() => import('../../pages/HomePage'));
+const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
   );
